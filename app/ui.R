@@ -1,4 +1,3 @@
-#
 # This is the user-interface definition of a Shiny web application. You can
 # run the application by clicking 'Run App' above.
 #
@@ -56,34 +55,57 @@ shinyUI(navbarPage(title = 'COVID-19',
                                                          radioButtons("log_scale", "In Log Scale:",
                                                                       choices = c(TRUE,FALSE),
                                                                       selected = FALSE))
-                                                          )
-                                                ),
+                                                )
+                                         ),
                                          #render plotly output
                                          column(width = 6,
                                                 plotlyOutput('case_overtime'))
-                                              )
-                                        )
-                                      )
-                                    )
-                                ),
+                                       )
+                                )
+                              )
+                            )
+                   ),
                    #--------------------------
                    #tab panel 2 - Map
-                   tabPanel("Maps",icon = icon("map-marker-alt"),div(class = 'outer',
-                            leafletOutput("map", width = "100%", height = "1200"),
-                            absolutePanel(id = "control", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
-                                          top = 300, left = 20, right = "auto", bottom = "auto", width = 250, height = "auto",
-                                          selectInput('choices','Which data to visualize:',
-                                                      choices = c('Cases','Death'),
-                                                      selected = c('Cases')),
-                                          sliderInput('date_map','Input Date:',
-                                                      #first day of data recording
-                                                      min = as.Date(date_choices[1]),
-                                                      #present day of data recording
-                                                      max = as.Date(tail(date_choices,1)),
-                                                      value = as.Date('2020-04-01','%Y-%m-%d'),
-                                                      timeFormat = "%Y-%m-%d",
-                                                      animate = TRUE, step = 5),
-                                          style = "opacity: 0.80"))),
+                   
+                   
+                   tabPanel("Your Neighborhood on the Map",icon = icon("map-marker-alt"), 
+                            sidebarLayout(position = "right",
+                                          sidebarPanel(
+                                            h3("Food"),
+                                            checkboxInput("checkbox", label = " Free meals", value = TRUE),
+                                            hr(),
+                                            h3("Leissure"),
+                                            checkboxInput("checkbox", label = "Playgrounds", value = FALSE),
+                                            checkboxInput("checkbox", label = "Athletic Fields", value = FALSE),
+                                            checkboxInput("checkbox", label = "Dog Runs", value = FALSE),
+                                            hr(),
+                                            h3("Health"),
+                                            checkboxInput("checkbox", label = "Vaccination Centers", value = TRUE),
+                                            checkboxInput("checkbox", label = "Hospitals", value = FALSE),
+                                            hr()
+                                          ),
+                                          mainPanel(
+                                            div(class = 'outer',
+                                                leafletOutput("map", width = "100%", height = "1200"),
+                                                absolutePanel(id = "control", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
+                                                              top = 300, left = 20, right = "auto", bottom = "auto", width = 250, height = "auto",
+                                                              selectInput('choices','Which data to visualize:',
+                                                                          choices = c('Cases','Death'),
+                                                                          selected = c('Cases')),
+                                                              sliderInput('date_map','Input Date:',
+                                                                          #first day of data recording
+                                                                          min = as.Date(date_choices[1]),
+                                                                          #present day of data recording
+                                                                          max = as.Date(tail(date_choices,1)),
+                                                                          value = as.Date('2020-04-01','%Y-%m-%d'),
+                                                                          timeFormat = "%Y-%m-%d",
+                                                                          animate = TRUE, step = 5),
+                                                              style = "opacity: 0.80")
+                                                )
+                                            ),
+                                          )
+                            ),
                    # ----------------------------------
                    #tab panel 3 - Source
                    tabPanel("Data Source",icon = icon("cloud-download"),
