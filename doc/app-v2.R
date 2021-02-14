@@ -1,3 +1,4 @@
+
 # References
 # https://github.com/gadenbuie/tweet-conf-dash
 source("global-v2.R")
@@ -24,7 +25,7 @@ if(!require(ggmap)) install.packages("ggmap", repos = "http://cran.us.r-project.
 if(!require(googleway)) install.packages("googleway", repos = "http://cran.us.r-project.org")
 if(!require(viridis)) install.packages("viridis", repos = "http://cran.us.r-project.org")
 if(!require(htmltools)) install.packages("htmltools", repos = "http://cran.us.r-project.org")
-
+if(!require(highcharter)) install.packages("highcharter")
 
 borough_vars <- c("ALL BOROUGHS" = "",
                   "BRONX" = "Bronx",
@@ -293,20 +294,29 @@ server <- function(input, output,session) {
     #=========================
     # NYC basemap
     output$mymap <- renderLeaflet({ 
-        leaflet() %>%
+        leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+            htmlwidgets::onRender(
+                "function(el, x) {
+                    L.control.zoom({ position: 'bottomright' }).addTo(this)
+                }"
+            ) %>%
             addTiles() %>%
             setView(lng = -73.935242, lat = 40.730610, zoom = 11)
     })
+    
     # --------------------------- hospitals & testing (google map) -------------------------------
     # read the data
-    df <- readRDS(file="./processed_data.Rda") 
+    df <- readRDS(file="../data/processed_data.Rda")
     
     # create reactive components
     df_react_hospitals <- reactive({ 
-      data = df[df$category == 'hospital', ]
+      df1 = df[df$category == 'hospital', ]
+      data = df1[df1$borough == input$plot_borough, ]
     })
+    
     df_react_test_sites <- reactive({ 
-      data = df[df$category == 'covid testing site', ]
+      df1 = df[df$category == 'covid testing site', ]
+      data = df1[df1$borough == input$plot_borough, ]
     })
     
     # -------------------------- park closure status---------------------------------------------

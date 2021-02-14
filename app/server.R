@@ -93,7 +93,7 @@ shinyServer(function(input, output) {
     pal <- reactive(colorNumeric(c("#FFFFFFFF" ,rev(inferno(256))), domain = c(0,log(binning(maxTotal())))))    
     
     output$map <- renderLeaflet({
-        map <-  leaflet(countries) %>%
+        map <- leaflet(countries) %>%
             addProviderTiles("Stadia.Outdoors", options = providerTileOptions(noWrap = TRUE)) %>%
             setView(0, 30, zoom = 3) })
     
