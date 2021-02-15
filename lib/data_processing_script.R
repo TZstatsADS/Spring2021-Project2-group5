@@ -117,3 +117,19 @@ saveRDS(
   df,
   "processed_data.Rda"
 )
+
+#--------------------mobility data---------------------------------------------------------------------
+mobility_data <- read.csv("../data/2020_US_Region_Mobility_Report.csv")
+
+data_NT <- subset(mobility_data, sub_region_1 == "New York")
+#data_NT$month <-months(as.Date(data_NT$date))
+data_NT <- data_NT[,c("sub_region_2",
+                      "date",
+                      "retail_and_recreation_percent_change_from_baseline",
+                      "grocery_and_pharmacy_percent_change_from_baseline",
+                      "parks_percent_change_from_baseline",
+                      "transit_stations_percent_change_from_baseline",
+                      "workplaces_percent_change_from_baseline",
+                      "residential_percent_change_from_baseline")]
+
+write.csv(data_NT, file = here::here("output", "mobility_data_clean.csv"),row.names=FALSE)
