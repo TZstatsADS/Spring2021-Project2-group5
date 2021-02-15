@@ -80,7 +80,7 @@ ui <- fluidPage(
                header = tagList(
                    useShinydashboard()
                ),
-               tabPanel('Project Description',icon = icon("home"),
+               tabPanel('Home',icon = icon("home"),
                         fluidRow(
                             tags$img(src = nueva_york, class = "background", width="100%", style = "opacity: 0.70"),
                                             #"../www/nueva_york-coronavirus.jpg"
@@ -98,7 +98,7 @@ ui <- fluidPage(
                             )
                         ),
                # tab 1 (section 1)
-               tabPanel('Introduction', icon = icon("file-alt"),
+               tabPanel('Covid Tracker', icon = icon("file-alt"),
                         div(class='coverDiv',
                             #tags$head(includeCSS('styles.css')), # custom styles
                             titlePanel("Live Updates on Coronavirus Cases in New York City"),
@@ -364,7 +364,7 @@ server <- function(input, output,session) {
     })
     # --------------------------- hospitals & testing (google map) -------------------------------
     # read the data
-    df <- readRDS(file="../data/processed_data.Rda") 
+    df <- readRDS(file="../output/processed_data.Rda") 
     
     # create reactive components
     df_react_hospitals <- reactive({ 
