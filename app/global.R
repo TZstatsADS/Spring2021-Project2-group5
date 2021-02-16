@@ -21,7 +21,7 @@ if(!require(googleway)) install.packages("googleway", repos = "http://cran.us.r-
 if(!require(viridis)) install.packages("viridis", repos = "http://cran.us.r-project.org")
 if(!require(htmltools)) install.packages("htmltools", repos = "http://cran.us.r-project.org")
 
-
+setwd("..")
 # ==================================================== Load data ==========================================================
 #nyc health data
 data_by_day <- read.csv("https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv", stringsAsFactors = FALSE)
@@ -46,7 +46,7 @@ nyc_yesterday<- data_by_day[nrow(data_by_day)-1,]
 
 # mobility data
 #data_NT <- read.csv("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/mobility_data_clean.csv?token=AKNEFHVIPWMHD56NJAEVF4TAGUBIE")
-data_NT <- read.csv("../output/mobility_data_clean.csv", stringsAsFactors = FALSE)
+data_NT <- readr::read_csv(here::here("./output/mobility_data_clean.csv"))
 data_NT$date_of_interest <- as.Date(data_NT$date,format="%Y-%m-%d")
 data_NT <- data_NT %>% rename_all(funs(str_replace_all(., "_percent_change_from_baseline", "")))
 
@@ -55,11 +55,11 @@ data_NT <- data_NT %>% rename_all(funs(str_replace_all(., "_percent_change_from_
 #FreeMeals <- read.csv("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/FreeMeals_clean.csv?token=AKNEFHWNBDDICOIDN3COTOLAGP46M", stringsAsFactors = FALSE)
 #Playgrounds <- read.csv("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/Playgrounds_clean.csv?token=AKNEFHVALHT4IM4AR24F6PLAGP5FU", stringsAsFactors = FALSE)
 #AdultExerciseEquip <- read.csv("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/AdultExerciseEquip_clean.csv?token=AKNEFHUQUMDJNCU4YOLAUELAGP43K", stringsAsFactors = FALSE)
-FreeMeals <- read.csv("../output/FreeMeals_clean.csv", stringsAsFactors = FALSE)
-Playgrounds <- read.csv("../output/Playgrounds_clean.csv", stringsAsFactors = FALSE)
-AdultExerciseEquip <-read.csv("../output/AdultExerciseEquip_clean.csv", stringsAsFactors = FALSE)
+FreeMeals <- readr::read_csv(here::here("./output/FreeMeals_clean.csv"))
+Playgrounds <- readr::read_csv(here::here("./output/Playgrounds_clean.csv"))
+AdultExerciseEquip <-readr::read_csv(here::here("./output/AdultExerciseEquip_clean.csv"))
 # Geo Polygons
-AtheleticFac_geo <- geojsonio::geojson_read("../output/AtheleticFac_geo_clean.geojson", what = "sp")
-SkateParks_geo <- geojsonio::geojson_read("../output/SkateParks_geo_clean.geojson", what = "sp")
-DogRuns_geo <- geojsonio::geojson_read("../output/DogRuns_geo_clean.geojson", what = "sp")
+AtheleticFac_geo <- geojsonio::geojson_read("./output/AtheleticFac_geo_clean.geojson", what = "sp")
+SkateParks_geo <- geojsonio::geojson_read("./output/SkateParks_geo_clean.geojson", what = "sp")
+DogRuns_geo <- geojsonio::geojson_read("./output/DogRuns_geo_clean.geojson", what = "sp")
 

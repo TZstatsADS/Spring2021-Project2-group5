@@ -5,8 +5,8 @@ account: ybliu9
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3647855
-bundleId: 4231731
+bundleId: 4231772
 url: https://ybliu9.shinyapps.io/CovidSurvivalManual4NewYorkers/
-when: 1613510076.89956
+when: 1613510597.62296
 asMultiple: FALSE
 asStatic: FALSE

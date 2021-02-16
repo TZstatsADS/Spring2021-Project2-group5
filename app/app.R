@@ -82,7 +82,7 @@ nueva_york <- "https://www.telemundo.com/sites/nbcutelemundo/files/styles/nbcnew
 ui <- fluidPage(
     tags$style("@import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css);"),
     navbarPage(theme = shinytheme("flatly"), collapsible = TRUE,
-               title= img(src="4newyorker_long.png", style="vertical-align= top", height = "180%", width="200"),
+               title= img(src="4newyorker_long.PNG", style="vertical-align= top", height = "180%", width="200"),
                #HTML('<a style="text-decoration:none;cursor:default;" class="active" href="#">COVID-19 Survival Manual 4 New Yorkers</a>'), 
                id="nav",
                windowTitle = "COVID-19 Survival Manual 4 New Yorkers",
@@ -381,7 +381,7 @@ server <- function(input, output,session) {
     })
     # --------------------------- hospitals & testing (google map) -------------------------------
     # read the data
-    df <- readRDS(file="../output/processed_data.Rda") 
+    df <- readRDS(file="./output/processed_data.Rda") 
     #githubURL <- "https://github.com/TZstatsADS/Spring2021-Project2-group5/blob/master/output/processed_data.Rda?raw=true"
     #df<- load(url(githubURL))
     
