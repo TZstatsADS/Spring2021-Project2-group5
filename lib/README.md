@@ -1,6 +1,5 @@
-# Project 2: Shiny App Development
+# Project 2: Shiny App Development - - 4New Yorkers Covid Survival Manual
 
 ### Code lib Folder
 
-The lib directory contains various files with function definitions (but only function definitions - no code that actually runs).
-
+The lib directory contains data processing scripts for hospitals, covid testing locations and mobility report. 
