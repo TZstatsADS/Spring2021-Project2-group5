@@ -30,7 +30,7 @@ Term: Spring 2021
 
 + **Project summary**: Covid-19 is a widely spread disease that can transmit through surface and air. It has infected over 100 million people and caused over 2 millions of deaths. Moreover, it makes everyone’s life miserable. People keep themselves at home, suffer from fear and loneliness. More severely, people lose their jobs or go bankrupt due to the heavy blow the disease dealt to the economy, which restricted their access to clean food and medication. Fortunately, we can provide a little help to the suffering New Yorkers. 
 
-First, our app will provide you with the most updated data of the Covid-19 statistics so that you can have a synthetic view on statistics about the flow of the virus among New Yorkers - General Overview.
+First, our app will provide you with the most updated data of the Covid-19 statistics including case count, death count and hospitalized count so that you can have a synthetic view on statistics about the flow of the virus among New Yorkers - General Overview.
 
 Second, through the Resources Mapper we integrated an interactive map of New York state and its boroughs, which allows you to search for the nearest testing sites and hospitals for medication support, shelters for free meals distributions, or even parks and athletic facilities to relax yourself.
 
