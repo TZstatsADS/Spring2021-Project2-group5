@@ -217,14 +217,16 @@ ui <- fluidPage(
                         tags$h2("Sources"),
                         tags$b("COVID-19 Cases Data: "), tags$a(href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series", "Johns Hopkins Center for Systems Science and Engineering github page,")," with additional information from the ",tags$a(href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports", "WHO's COVID-19 situation reports."),
                         " In previous versions of this site (up to 17th March 2020), updates were based solely on the WHO's situation reports.",tags$br(),
-                        tags$b("US state-level case data: "), tags$a(href="https://github.com/nytimes/covid-19-data", "New York Times github page,"),tags$br(),
+                        tags$b("US state-level case Data: "), tags$a(href="https://github.com/nytimes/covid-19-data", "New York Times github page,"),tags$br(),
+                        tags$b("Mobility Data: "), tags$a(href="https://www.google.com/covid19/mobility/", "Google's COVID-19 Community Mobility Reports"),
                         tags$b("Shiny Dashboard: "), tags$a(href="https://github.com/rstudio/shiny-examples/blob/master/087-crandash/", "Joe Cheng's Github repository"),
+                        
                         
                         tags$br(),tags$br(),tags$h2("Authors"),
                         tags$a(href="yl4616@columbia.edu", "Yibai Liu"), ", The Data Science Institute, Columbia University",tags$br(),
-                        ", Columbia University",tags$br(),
-                        ", Columbia University",tags$br(),
-                        ", Columbia University",tags$br(),
+                        "Aurore Gosmant, apg2170@columbia.edu, Columbia University",tags$br(),
+                        "Olha Maslova, om2308@columbia.edu, Columbia University",tags$br(),
+                        "Zikun Zhuang, zz2762@columbia.edu, Columbia University",tags$br(),
                         tags$br(),tags$br(),tags$h2("Github page"),
                         tags$a(href="https://github.com/TZstatsADS/Spring2021-Project2-group5", "See code in our Github repository"),tags$br(),tags$br())
         )
