@@ -28,7 +28,15 @@ Term: Spring 2021
 	+ Ohla Maslova
 	+ Zikun Zhuang
 
-+ **Project summary**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ **Project summary**: Covid-19 is a widely spread disease that can transmit through surface and air. It has infected over 100 million people and caused over 2 millions of deaths. Moreover, it makes everyone’s life miserable. People keep themselves at home, suffer from fear and loneliness. More severely, people lose their jobs or go bankrupt due to the heavy blow the disease dealt to the economy, which restricted their access to clean food and medication. Fortunately, we can provide a little help to the suffering New Yorkers. 
+
+First, our app will provide you with the most updated data of the Covid-19 statistics so that you can have a synthetic view on statistics about the flow of the virus among New Yorkers - General Overview.
+
+Second, through the Resources Mapper we integrated an interactive map of New York state and its boroughs, which allows you to search for the nearest testing sites and hospitals for medication support, shelters for free meals distributions, or even parks and athletic facilities to relax yourself.
+
+Third, if you want to check how the traffic to parks, transit stations, workplaces or grocery stores is impacted by the pandemic, you should skim through the Mobility Section. The graphs in this page depict the evolution of percentage change of mobility to some common places during the pandemic against a baseline, which was calculated before the pandemic.
+
+Finally, In case you have any question or need more information, you can contact us and find more resources on the about page.
 
 + **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
