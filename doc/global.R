@@ -45,7 +45,7 @@ nyc_yesterday<- data_by_day[nrow(data_by_day)-1,]
 #jhu_ny <- jhu_data[jhu_data$Province_State == "New York",]
 
 # mobility data
-data_NT <- read.csv("../output/mobility_data_clean.csv")
+data_NT <- read.csv("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/mobility_data_clean.csv?token=AKNEFHVIPWMHD56NJAEVF4TAGUBIE")
 data_NT$date_of_interest <- as.Date(data_NT$date,format="%Y-%m-%d")
 data_NT <- data_NT %>% rename_all(funs(str_replace_all(., "_percent_change_from_baseline", "")))
 
@@ -55,7 +55,7 @@ FreeMeals <- read.csv("https://raw.githubusercontent.com/TZstatsADS/Spring2021-P
 Playgrounds <- read.csv("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/Playgrounds_clean.csv?token=AKNEFHVALHT4IM4AR24F6PLAGP5FU", stringsAsFactors = FALSE)
 AdultExerciseEquip <- read.csv("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/AdultExerciseEquip_clean.csv?token=AKNEFHUQUMDJNCU4YOLAUELAGP43K", stringsAsFactors = FALSE)
 # Geo Polygons
-AtheleticFac_geo <- geojsonio::geojson_read("../output/AtheleticFac_geo_clean.geojson", what = "sp")
-SkateParks_geo <- geojsonio::geojson_read("../output/SkateParks_geo_clean.geojson", what = "sp")
-DogRuns_geo <- geojsonio::geojson_read("../output/DogRuns_geo_clean.geojson", what = "sp")
+AtheleticFac_geo <- geojsonio::geojson_read("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/AtheleticFac_geo_clean.geojson?token=AKNEFHWM5IMYDVEK5HUDGTDAGUB22", what = "sp")
+SkateParks_geo <- geojsonio::geojson_read("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/SkateParks_geo_clean.geojson?token=AKNEFHV4PFGPZOYSMKO4ITLAGUB7G", what = "sp")
+DogRuns_geo <- geojsonio::geojson_read("https://raw.githubusercontent.com/TZstatsADS/Spring2021-Project2-group5/master/output/DogRuns_geo_clean.geojson?token=AKNEFHQHOQUEM2JESENFLPTAGUB5S", what = "sp")
 
