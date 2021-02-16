@@ -1,18 +1,17 @@
-# Project 2: Shiny App Development
+# Project 2: Shiny App Development - 4New Yorkers Covid Survival Manual
 
 ### [Project Description](doc/project2_desc.md)
 
 ![screenshot](doc/figs/map.jpg)
 
-## Project Title Welcome to the 4New Yorkers Covid Survivor Manual
+## Project Title: 4New Yorkers Covid Survival Manual
 Term: Spring 2021
 
 + Team #5
-+ **Project title**: Welcome to the 4New Yorkers Covid Survivor Manual
 + Team members
 	+ Aurore Gosmant
 	+ Yibai Liu
-	+ Ohla Maslova
+	+ Olha Maslova
 	+ Zikun Zhuang
 
 + **Project summary**: 
