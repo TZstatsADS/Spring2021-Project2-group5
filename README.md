@@ -29,6 +29,7 @@ Term: Spring 2021
 	+ Zikun Zhuang
 
 + **Project summary**: 
+
 Covid-19 is a widely spread disease that can transmit through surface and air. It has infected over 100 million people and caused over 2 millions of deaths. Moreover, it makes everyone’s life miserable. People keep themselves at home, suffer from fear and loneliness. More severely, people lose their jobs or go bankrupt due to the heavy blow the disease dealt to the economy, which restricted their access to clean food and medication. Fortunately, we can provide a little help to the suffering New Yorkers. 
 
 First, our app will provide you with the most updated data of the Covid-19 statistics including case count, death count and hospitalized count so that you can have a synthetic view on statistics about the flow of the virus among New Yorkers - General Overview.
