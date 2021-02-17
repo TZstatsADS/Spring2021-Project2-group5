@@ -2,7 +2,7 @@
 
 ### [Project Description](doc/project2_desc.md)
 
-![screenshot](doc/figs/map.jpg)
+![screenshot](doc/figs/appscreenshot.PNG)
 
 ## Project Title: 4New Yorkers Covid Survival Manual
 Term: Spring 2021
