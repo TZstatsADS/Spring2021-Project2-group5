@@ -98,7 +98,7 @@ ui <- fluidPage(
                                           draggable = FALSE, height = 200,
                                           fluidRow(style = "padding: 7.5%; background-color: white; text-align: center",
                                                    tags$h1("Welcome to the COVID-19 Survival Manual 4 New Yorkers app!", style="font-weight:bold"),tags$br(),
-                                                   tags$p("The Coronavirus (Covid-19) has so far infected over 100 million people and caused over 2 million deaths globally. In the US, the City of New York has been hit hardest, which many people lost their jobs or went bankrupt due to the devastating blow for the economy, and had restricted access to clean foods and medication. In this project, our goal is to provide a survival guide to help and support the suffering New Yorkers.", style="font-weight:italic"),tags$br(),
+                                                   tags$p("The Coronavirus (Covid-19) has so far infected over 100 million people and caused over 2 million deaths globally. In the US, the City of New York has been hit hardest, which many people lost their jobs or went bankrupt due to the devastating blow for the economy, and had restricted access to clean foods and medication. In this project, our goal is to provide a survival guide to help and support the suffering New Yorkers. ", style="font-weight:italic"),tags$br(),
                                                    tags$h3("Remember, we are in this together!", style="color:#18bc9c; font-weight:bold"),
                                                    tags$h4("We would like to be your source for Coronavirus updates, resources, and trends in New York City.", style="color:#18bc9c")
                                                    ),
@@ -120,7 +120,7 @@ ui <- fluidPage(
                                 valueBoxOutput(outputId = "TDeathsBox",width = 2),
                                 valueBoxOutput(outputId = "NewDeathsBox",width = 2)
                                 ),
-                            span(tags$i(h5("Source: ", tags$a(href="https://github.com/nychealth/coronavirus-data", "NYC COVID-19 open data.")," Reported cases are subject to significant variation in reporting organizations.", style="color:#045a8d; font-weight:italic"))),
+                            span(tags$i(h5("Source: ", tags$a(href="https://github.com/nychealth/coronavirus-data", "NYC Coronavirus Disease 2019 Data.")," Reported cases are subject to significant variation in reporting organizations.", style="color:#045a8d; font-weight:italic"))),
                             tags$br(),
                             span(tags$i(h6(paste0("Last Update on: ", nyc_latest$date_of_interest[1])))),
                             sidebarLayout(position = "left",
@@ -167,7 +167,7 @@ ui <- fluidPage(
                                           selectInput("plot_borough", 
                                                       label = NULL, 
                                                       choices = borough_vars, 
-                                                      selected = borough_vars[1]),
+                                                      selected = borough_vars[2]),
                                           h3("Select COVID-19 related resources:", align="left", style="color:#045a8d"),
                                           helpText(""),
                                           h4("FOODS", align = "left"),
@@ -191,16 +191,16 @@ ui <- fluidPage(
                         span(tags$h5("This page provides time series plots for mobility changes in NYC under the impacts of Covid-19.")),
                         sidebarLayout(position = "left",
                                       sidebarPanel(
-                                          h3("NYC Counties", align = "left", style="color:#045a8d"),
+                                          h3("NYC Neighborhoods", align = "left", style="color:#045a8d"),
                                           
-                                          span(tags$i(h6("Mobility is calculated against a baseline...")), style="color:#045a8d"),
+                                          span(tags$i(h6("Mobility changes for each day are compared against a baseline value for that day of the week, which is the median value during the pre-Coronavirus period Jan 3–Feb 6, 2020.")), style="color:#045a8d"),
                                           
                                           # select from drop-down lists
                                           selectInput("select_county", 
                                                       label = NULL, 
                                                       choices = borough_vars2, 
                                                       selected = borough_vars2[1]),
-                                          h3("Select the topic(s) to see mobility trends over time:", align = "left", style="color:#045a8d"),
+                                          h3("Select the activity(s) to see mobility trends over time:", align = "left", style="color:#045a8d"),
                                           checkboxInput("retail", label = "Retail and Recreation", value = FALSE),
                                           checkboxInput("grocerypharms", label = "Grocery and Pharmacy", value = FALSE),
                                           checkboxInput("parks", label = "Parks", value = FALSE),
@@ -381,7 +381,7 @@ server <- function(input, output,session) {
     })
     # --------------------------- hospitals & testing (google map) -------------------------------
     # read the data
-    df <- readRDS(file="output/processed_data.Rda") 
+    df <- readRDS(file="./output/processed_data.Rda") 
     #githubURL <- "https://github.com/TZstatsADS/Spring2021-Project2-group5/blob/master/output/processed_data.Rda?raw=true"
     #df<- load(url(githubURL))
     
@@ -548,7 +548,8 @@ server <- function(input, output,session) {
     # select subset by borough
     SubsetCounty <- function(ts_borough){
         if (ts_borough == ""){
-            data <-  subset(data_NT, select = c(-sub_region_2,-date))
+            data_tmp <- subset(data_NT, sub_region_2 == "ALL")
+            data <-  subset(data_tmp, select = c(-sub_region_2,-date))
         } else if (ts_borough == "Bronx"){
             data_tmp <- subset(data_NT, sub_region_2 == "Bronx County")
             data <- subset(data_tmp, select = c(-sub_region_2,-date))
@@ -627,11 +628,74 @@ server <- function(input, output,session) {
                          labels = list(format = '{value:%b %d %y}')) %>%
                 hc_yAxis(title = list(text = "Percent Change Compared to Baseline"),
                          tickInterval = 50,
-                         max = max(mobility_filter$value)) %>%
-                hc_title(text = paste0("<b>Covid-19 Summary for ",ts_title, ", NY by Date</b>")) %>%
+                         max = max(mobility_filter$value),
+                         plotLines = list(
+                             list(                # Defines a single plot line, could add more
+                                 value = 0,
+                                 color = "#000000",
+                                 zIndex = 1000)     # Defines priority, higher means shown on top of other elements
+                                 )) %>%
+                hc_title(text = paste0("<b>Mobility Trends for ",ts_title, ", NY by Date</b>")) %>%
                 hc_subtitle(text = "Click and drag in the plot area to zoom in on a time span") %>%
                 hc_plotOptions(area = list(lineWidth = 0.5)) %>% 
-                hc_exporting(enabled = TRUE)
+                hc_exporting(enabled = TRUE) %>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)',
+                        verticalAlign = 'top',
+                        y = 15),
+                    labels = list(list(point = list(xAxis = 0, yAxis = 0,
+                                          x = datetime_to_timestamp(as.Date("2020/04/12")),
+                                          y = 0), text = "Easter Holiday"))) %>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)'),#default verticalAlign is down
+                    labels = list(list(point = list(xAxis = 0, yAxis = 0,
+                                                    x = datetime_to_timestamp(as.Date("2020/02/17")),
+                                                    y = 0), text = "Presidents' Day"))) %>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)'),
+                    labels = list(list(point = list(xAxis = 0, yAxis = 0,
+                                          x = datetime_to_timestamp(as.Date("2020/05/25")),
+                                          y = 0), text = "Momerial Day"))) %>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)', verticalAlign = 'top', y = 15),
+                    labels = list(list(point = list(xAxis = 0, yAxis = 0,
+                                          x = datetime_to_timestamp(as.Date("2020/07/04")),
+                                          y = 0), text = "Independence Day")))%>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)',verticalAlign = 'top',y = 15),
+                    labels = list(list(point = list(xAxis = 0, yAxis = 0,
+                                          x = datetime_to_timestamp(as.Date("2020/09/07")),
+                                          y = 0), text = "Labor Day")))%>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)'),
+                    labels = list(list(point = list(xAxis = 0, yAxis = 0,
+                                          x = datetime_to_timestamp(as.Date("2020/10/12")),
+                                          y = 0), text = "Columbus Day")))%>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)',verticalAlign = 'top',y = 15),
+                    labels = list(list(point = list(xAxis = 0, yAxis = 0,
+                                          x = datetime_to_timestamp(as.Date("2020/11/26")),
+                                          y = 0), text = "Thanksgiving Day")))%>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)'),
+                    labels = list(list(point = list(xAxis = 0, yAxis = 0,
+                                          x = datetime_to_timestamp(as.Date("2021/01/01")),
+                                          y = 0), text = "New Year's Day"))) %>%
+                hc_add_annotation(
+                    labelOptions = list(
+                        backgroundColor = 'rgba(0,0,0,0.4)',verticalAlign = 'top',y = 15), 
+                    labels = list(
+                        list(point = list(xAxis = 0, yAxis = 0,
+                                          x = datetime_to_timestamp(as.Date("2020/12/24")),
+                                          y = -25), text = "Christmas Holiday")))
         }, quoted = TRUE)
         
     })
