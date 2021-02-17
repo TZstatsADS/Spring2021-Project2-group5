@@ -148,8 +148,11 @@ data_NT <- data_NT[,c("sub_region_2",
                       "transit_stations_percent_change_from_baseline",
                       "workplaces_percent_change_from_baseline",
                       "residential_percent_change_from_baseline")]
-
-write.csv(data_NT, file = here::here("output", "mobility_data_clean.csv"),row.names=FALSE)
+data_NT <- data_NT %>% rename_all(funs(str_replace_all(., "_percent_change_from_baseline", "")))
+data_NT["sub_region_2"][is.na(data_NT["sub_region_2"])] <- "ALL"
+COUNTIES<- c("ALL","Bronx County", "Kings County", "New York County", "Queens County","Richmond County")
+data_NT <- data_NT %>% dplyr::filter(sub_region_2 %in% COUNTIES)
+write.csv(data_NT, file = here::here("app","output", "mobility_data_clean.csv"),row.names=FALSE)
 
 # ---------------------- Park Closure Status Data -----------------------------------------
 # NYC Open Data datasets 
