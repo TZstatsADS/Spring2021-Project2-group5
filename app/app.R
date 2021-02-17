@@ -10,7 +10,7 @@
 # https://github.com/rstudio/shiny-examples/blob/master/087-crandash/
 # https://rviews.rstudio.com/2019/10/09/building-interactive-world-maps-in-shiny/
 # https://github.com/eparker12/nCoV_tracker
-
+setwd(".")
 source("global.R")
 
 if(!require(devtools)) install.packages("devtools", repos = "http://cran.us.r-project.org")
