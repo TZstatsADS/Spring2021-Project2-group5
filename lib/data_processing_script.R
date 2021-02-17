@@ -132,7 +132,7 @@ df$open_now[is.na(df$opening_hours['open_now'])]  <- 'No Data'
 
 saveRDS(
   df,
-  "processed_data.Rda"
+  "../output/processed_data.Rda"
 )
 
 #--------------------mobility data---------------------------------------------------------------------
