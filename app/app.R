@@ -381,7 +381,7 @@ server <- function(input, output,session) {
     })
     # --------------------------- hospitals & testing (google map) -------------------------------
     # read the data
-    df <- readRDS(file="./output/processed_data.Rda") 
+    df <- readRDS(file="output/processed_data.Rda") 
     #githubURL <- "https://github.com/TZstatsADS/Spring2021-Project2-group5/blob/master/output/processed_data.Rda?raw=true"
     #df<- load(url(githubURL))
     
